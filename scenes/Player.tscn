@@ -33,8 +33,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 200
+speed = 350
 projectileScene = ExtResource( 3 )
+projectileSpeed = 800
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 10, 10 )
@@ -47,3 +48,7 @@ animation = "idle"
 position = Vector2( 0, 0.5 )
 scale = Vector2( 10, 10 )
 shape = SubResource( 4 )
+
+[node name="ShootingTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
