@@ -8,6 +8,8 @@ export var projectileSpeed = 750
 export var maxProjectiles = 3
 var currentProjectiles
 
+const LayerAlias = preload("res://scripts/LayerAlias.gd")
+
 func _ready():
 	currentProjectiles = 0
 	$ShootingTimer.start(shootingCooldown)
@@ -34,6 +36,13 @@ func shoot():
 	currentProjectiles+=1
 	
 	var projectile = projectileScene.instance()
+	# Overall, if the objects are A and B, 
+	# the check for collision is 
+	# A.mask & B.layers || B.mask & A.layers, 
+	# where & is bitwise-and, and || is the or operator. 
+	# I.e. it takes the layers that correspond to the other object's mask, and checks if any of them is on in both places. It will they proceed to check it the other way around, and if any of the two tests passes, it would report the collision.
+	projectile.set_collision_layer_bit(LayerAlias.LayerAlias.PLAYER_PROJECTILE, true)
+	projectile.set_collision_mask_bit(LayerAlias.LayerAlias.ENEMY, true)
 	projectile.direction = Vector2.UP
 	projectile.speed = projectileSpeed
 	projectile.position = position
@@ -44,3 +53,7 @@ func shoot():
 func _projectileDestroyed():
 	currentProjectiles-=1
 	
+
+
+func _on_Area2D_area_entered(area):
+	print_debug("player hit")

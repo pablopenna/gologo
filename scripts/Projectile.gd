@@ -3,6 +3,8 @@ extends Area2D
 export var direction = Vector2.UP
 export var speed = 100
 
+const LayerAlias = preload("res://scripts/LayerAlias.gd")
+
 signal outOfScreen
 	
 func _process(delta):

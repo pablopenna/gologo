@@ -43,6 +43,7 @@ frames = SubResource( 3 )
 animation = "idle"
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, 0.5 )
@@ -52,3 +53,5 @@ shape = SubResource( 4 )
 [node name="ShootingTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
