@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/enemy/Spawner.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=2]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+enemyScene = ExtResource( 2 )
 
 [node name="SpawnArea" type="Control" parent="."]
 anchor_right = 1.0
