@@ -24,3 +24,5 @@ func _process(delta):
 func _on_Enemy_area_entered(area):
 	if(area.get_collision_layer_bit(LayerAlias.LayerAlias.PLAYER_PROJECTILE)):
 		$AnimatedSprite.play("explode")
+		yield($AnimatedSprite, "animation_finished")
+		queue_free()

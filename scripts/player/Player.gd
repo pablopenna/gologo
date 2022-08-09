@@ -55,5 +55,5 @@ func _projectileDestroyed():
 	
 
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	print_debug("player hit")

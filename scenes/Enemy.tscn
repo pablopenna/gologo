@@ -69,9 +69,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 10, 10 )
 frames = SubResource( 4 )
-animation = "explode"
-frame = 7
-playing = true
+animation = "idle"
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
