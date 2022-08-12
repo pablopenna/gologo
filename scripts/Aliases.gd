@@ -1,3 +1,5 @@
+class_name Aliases
+
 enum LayerAlias {
 	PLAYER = 0,
 	ENEMY = 1,

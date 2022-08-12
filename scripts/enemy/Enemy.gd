@@ -6,8 +6,6 @@ export var projectileSpeed = 500
 export var speed = 300
 export var rotationSpeed = 5
 
-const LayerAlias = preload("res://scripts/LayerAlias.gd")
-
 func _ready():
 	$AnimatedSprite.play("idle")
 
@@ -28,8 +26,8 @@ func _process(delta):
 		
 func shoot():
 	var projectile = projectileScene.instance()
-	projectile.set_collision_layer_bit(LayerAlias.LayerAlias.ENEMY_PROJECTILE, true)
-	projectile.set_collision_mask_bit(LayerAlias.LayerAlias.PLAYER, true)
+	projectile.set_collision_layer_bit(Aliases.LayerAlias.ENEMY_PROJECTILE, true)
+	projectile.set_collision_mask_bit(Aliases.LayerAlias.PLAYER, true)
 	projectile.direction = Vector2.DOWN
 	projectile.speed = projectileSpeed
 	projectile.position = position
@@ -37,8 +35,8 @@ func shoot():
 
 func die():
 	# prevent player projectiles for interacting with it while exploding
-	set_collision_layer_bit(LayerAlias.LayerAlias.ENEMY, false)
-	set_collision_mask_bit(LayerAlias.LayerAlias.PLAYER_PROJECTILE, false)
+	set_collision_layer_bit(Aliases.LayerAlias.ENEMY, false)
+	set_collision_mask_bit(Aliases.LayerAlias.PLAYER_PROJECTILE, false)
 	
 	$AnimatedSprite.play("explode")
 	yield($AnimatedSprite, "animation_finished")

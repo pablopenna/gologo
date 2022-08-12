@@ -2,24 +2,28 @@ extends Area2D
 
 export var direction = Vector2.UP
 export var speed = 100
-
-const LayerAlias = preload("res://scripts/LayerAlias.gd")
+var hasExploded
 
 signal outOfScreen
-signal destroyed
+signal destroyed # when destroying the projectile via queue_free(), VisibilityNotifier is triggered
+	
+func _init():
+	hasExploded = false
 	
 func _process(delta):
 	position += direction * speed * delta
 
-func destroy():
+func _destroy():
 	emit_signal("destroyed")
 	queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
-	emit_signal("outOfScreen")
-	destroy()
+	if not hasExploded:
+		emit_signal("outOfScreen")
+		_destroy()
 
 func _on_Projectile_area_entered(area):
 	if area.has_method("die"):
+		hasExploded = true
 		area.die()
-		destroy()
+		_destroy()
