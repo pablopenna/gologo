@@ -1,13 +1,13 @@
 extends Area2D
 
-export(PackedScene) var projectileScene
-export var projectileSpeed = 500
+@export var projectileScene: PackedScene
+@export var projectileSpeed = 500
 
-export var speed = 300
-export var rotationSpeed = 5
+@export var speed = 300
+@export var rotationSpeed = 5
 
 func _ready():
-	$AnimatedSprite.play("idle")
+	$AnimatedSprite2D.play("idle")
 
 func _process(delta):
 	var movement = Vector2.ZERO
@@ -25,9 +25,9 @@ func _process(delta):
 		shoot()
 		
 func shoot():
-	var projectile = projectileScene.instance()
-	projectile.set_collision_layer_bit(Aliases.LayerAlias.ENEMY_PROJECTILE, true)
-	projectile.set_collision_mask_bit(Aliases.LayerAlias.PLAYER, true)
+	var projectile: Area2D = projectileScene.instantiate()
+	projectile.set_collision_layer_value(Aliases.LayerAlias.ENEMY_PROJECTILE, true)
+	projectile.set_collision_mask_value(Aliases.LayerAlias.PLAYER, true)
 	projectile.direction = Vector2.DOWN
 	projectile.speed = projectileSpeed
 	projectile.position = position
@@ -35,9 +35,9 @@ func shoot():
 
 func die():
 	# prevent player projectiles for interacting with it while exploding
-	set_collision_layer_bit(Aliases.LayerAlias.ENEMY, false)
-	set_collision_mask_bit(Aliases.LayerAlias.PLAYER_PROJECTILE, false)
+	set_collision_layer_value(Aliases.LayerAlias.ENEMY, false)
+	set_collision_mask_value(Aliases.LayerAlias.PLAYER_PROJECTILE, false)
 	
-	$AnimatedSprite.play("explode")
-	yield($AnimatedSprite, "animation_finished")
+	$AnimatedSprite2D.play("explode")
+	await $AnimatedSprite2D.animation_finished
 	queue_free()

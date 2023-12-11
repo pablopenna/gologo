@@ -7,7 +7,7 @@ func initialize(newState):
 	
 	for state in statesMap.values():
 		print_debug(state.name)
-		state.connect("changeState", self, "changeState")
+		state.connect("changeState", Callable(self, "changeState"))
 	
 	currentState = statesMap[newState]
 	currentState.enter()

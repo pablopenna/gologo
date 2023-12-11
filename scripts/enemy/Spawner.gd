@@ -1,9 +1,9 @@
 extends Node2D
 
 
-export(PackedScene) var enemyScene
-export var rows = 3
-export var columns = 5
+@export var enemyScene: PackedScene
+@export var rows = 3
+@export var columns = 5
 var spawnPoints = []
 
 func _ready():
@@ -12,8 +12,8 @@ func _ready():
 	spawnEnemies()
 	
 func _calculate_spawn_points():
-	var cellWidth = $SpawnArea.rect_size.x / columns
-	var cellHeight = $SpawnArea.rect_size.y / rows
+	var cellWidth = $SpawnArea.size.x / columns
+	var cellHeight = $SpawnArea.size.y / rows
 	var cellCenter = Vector2(cellWidth/2, cellHeight/2)
 	
 	for row in range(rows):
@@ -23,22 +23,22 @@ func _calculate_spawn_points():
 
 func spawnEnemies():
 	for point in spawnPoints:
-		var enemy = enemyScene.instance()
+		var enemy = enemyScene.instantiate()
 		enemy.position = point
 		add_child(enemy)
 	
 # Debug
 func _draw():
-	var topLeft = Vector2($SpawnArea.rect_position.x, $SpawnArea.rect_position.y)
-	draw_circle(topLeft, 10, Color.red)
-	var topRight = Vector2($SpawnArea.rect_position.x + $SpawnArea.rect_size.x, $SpawnArea.rect_position.y)
-	draw_circle(topRight, 10, Color.red)
-	var bottomLeft = Vector2($SpawnArea.rect_position.x, $SpawnArea.rect_position.y + $SpawnArea.rect_size.y)
-	draw_circle(bottomLeft, 10, Color.red)
-	var bottomRight = Vector2($SpawnArea.rect_position.x + $SpawnArea.rect_size.x, $SpawnArea.rect_position.y + $SpawnArea.rect_size.y)
-	draw_circle(bottomRight, 10, Color.red)
+	var topLeft = Vector2($SpawnArea.position.x, $SpawnArea.position.y)
+	draw_circle(topLeft, 10, Color.RED)
+	var topRight = Vector2($SpawnArea.position.x + $SpawnArea.size.x, $SpawnArea.position.y)
+	draw_circle(topRight, 10, Color.RED)
+	var bottomLeft = Vector2($SpawnArea.position.x, $SpawnArea.position.y + $SpawnArea.size.y)
+	draw_circle(bottomLeft, 10, Color.RED)
+	var bottomRight = Vector2($SpawnArea.position.x + $SpawnArea.size.x, $SpawnArea.position.y + $SpawnArea.size.y)
+	draw_circle(bottomRight, 10, Color.RED)
 	
 	
 	for point in spawnPoints:
-		draw_circle(point, 5, Color.chartreuse)
+		draw_circle(point, 5, Color.CHARTREUSE)
 	

@@ -1,106 +1,127 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://cvicjubvosahf"]
 
-[ext_resource path="res://scripts/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://art/player/PlayerShip.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Projectile.tscn" type="PackedScene" id=3]
-[ext_resource path="res://art/artifacts/projectile.png" type="Texture" id=4]
-[ext_resource path="res://scripts/player/ProjectileShooter.gd" type="Script" id=5]
-[ext_resource path="res://scripts/player/PlayerStateMachine.gd" type="Script" id=6]
-[ext_resource path="res://scripts/player/states/PlayerIdleState.gd" type="Script" id=7]
-[ext_resource path="res://scripts/player/states/PlayerMoveState.gd" type="Script" id=8]
+[ext_resource type="Script" path="res://scripts/player/Player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cl6qcbi0xowya" path="res://art/player/PlayerShip.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://dsmjdaohlvul3" path="res://scenes/Projectile.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="4"]
+[ext_resource type="Script" path="res://scripts/player/ProjectileShooter.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/player/PlayerStateMachine.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/player/states/PlayerIdleState.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/player/states/PlayerMoveState.gd" id="8"]
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 4 )
-region = Rect2( 8, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("4")
+region = Rect2(8, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 4 )
-region = Rect2( 16, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("4")
+region = Rect2(16, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 4 )
-region = Rect2( 24, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("4")
+region = Rect2(24, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("4")
+region = Rect2(32, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 4 )
-region = Rect2( 40, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("4")
+region = Rect2(40, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 4 )
-region = Rect2( 48, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("4")
+region = Rect2(48, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 4 )
-region = Rect2( 56, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("4")
+region = Rect2(56, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 8, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("2")
+region = Rect2(8, 0, 8, 8)
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), null ],
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("5")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}],
 "loop": false,
-"name": "explode",
+"name": &"explode",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
 "loop": false,
-"name": "idle",
+"name": &"idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 2 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("2")
+}],
 "loop": false,
-"name": "move",
+"name": &"move",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1.6, 3.6 )
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(3.2, 7.2)
 
 [node name="Player" type="Area2D"]
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+collision_mask = 0
+script = ExtResource("1")
 speed = 350
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 10, 10 )
-frames = SubResource( 3 )
-animation = "idle"
-playing = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(10, 10)
+sprite_frames = SubResource("3")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 4 )
-scale = Vector2( 10, 10 )
-shape = SubResource( 4 )
+position = Vector2(0, 4)
+scale = Vector2(10, 10)
+shape = SubResource("4")
 
 [node name="ProjectileShooter" type="Node2D" parent="."]
-position = Vector2( 0, -40 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
-projectileScene = ExtResource( 3 )
+position = Vector2(0, -40)
+script = ExtResource("5")
+projectileScene = ExtResource("3")
 
 [node name="ShootingTimer" type="Timer" parent="ProjectileShooter"]
 wait_time = 0.5
 one_shot = true
 
 [node name="PlayerStateMachine" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
 [node name="PlayerIdleState" type="Node" parent="PlayerStateMachine"]
-script = ExtResource( 7 )
+script = ExtResource("7")
 
 [node name="PlayerMoveState" type="Node" parent="PlayerStateMachine"]
-script = ExtResource( 8 )
+script = ExtResource("8")

@@ -1,11 +1,11 @@
 extends Area2D
 
-export var direction = Vector2.UP
-export var speed = 100
+@export var direction = Vector2.UP
+@export var speed = 100
 var hasExploded
 
 signal outOfScreen
-signal destroyed # when destroying the projectile via queue_free(), VisibilityNotifier is triggered
+signal destroyed # when destroying the projectile via queue_free(), VisibleOnScreenNotifier3D is triggered
 	
 func _init():
 	hasExploded = false

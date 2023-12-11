@@ -1,8 +1,8 @@
-extends Node
+class_name State extends Node
 
 signal changeState
 
-func changeState(newState):
+func emitChangeState(newState):
 	emit_signal("changeState", newState)
 
 func enter():

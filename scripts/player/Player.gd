@@ -1,6 +1,6 @@
 extends Node2D
 
-export var speed = 150
+@export var speed = 150
 
 var dead
 signal playerDied
@@ -29,13 +29,13 @@ func _processPosition(delta):
 	
 	
 	if movement != 0:
-		$AnimatedSprite.play("move")
+		$AnimatedSprite2D.play("move")
 		if movement < 0:
-			$AnimatedSprite.flip_h = true  
+			$AnimatedSprite2D.flip_h = true  
 		else: 
-			$AnimatedSprite.flip_h = false
+			$AnimatedSprite2D.flip_h = false
 	else:
-		$AnimatedSprite.play("idle")
+		$AnimatedSprite2D.play("idle")
 
 func _getMovementInput():
 	var movement = 0
@@ -48,7 +48,7 @@ func _getMovementInput():
 ### TODO: move this functionality to Hurtbox node
 func die():
 	dead = true
-	$AnimatedSprite.play("explode")
+	$AnimatedSprite2D.play("explode")
 	emit_signal("playerDied")
-	yield($AnimatedSprite, "animation_finished")
+	await $AnimatedSprite2D.animation_finished
 	queue_free()
