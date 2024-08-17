@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhknrf0x1phro"]
+[gd_scene load_steps=17 format=3 uid="uid://bhknrf0x1phro"]
 
-[ext_resource type="Script" path="res://scripts/enemy/Enemy.gd" id="1"]
+[ext_resource type="Script" path="res://src/enemy/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://d0gvajaq0aip1" path="res://art/enemies/EnemyShip01.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="3"]
-[ext_resource type="PackedScene" uid="uid://dsmjdaohlvul3" path="res://scenes/Projectile.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://qckx4qylyx03" path="res://src/projectile/projectile_shooter.tscn" id="5_s4dbg"]
+[ext_resource type="PackedScene" uid="uid://bg5veli5vdg23" path="res://src/utils/faction/faction.tscn" id="6_g0sux"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_th7qs"]
 radius = 15.0083
@@ -84,11 +85,11 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("projectile_shooter")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1")
-projectileScene = ExtResource("4")
+projectile_shooter = NodePath("ProjectileShooter")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
@@ -101,5 +102,11 @@ sprite_frames = SubResource("4")
 animation = &"idle"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ProjectileShooter" parent="." node_paths=PackedStringArray("faction") instance=ExtResource("5_s4dbg")]
+faction = NodePath("../Faction")
+
+[node name="Faction" parent="." instance=ExtResource("6_g0sux")]
+faction = 1
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]

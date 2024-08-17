@@ -1,42 +1,42 @@
 [gd_scene load_steps=14 format=3 uid="uid://dsmjdaohlvul3"]
 
-[ext_resource type="Script" path="res://scripts/Projectile.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="2"]
+[ext_resource type="Script" path="res://src/projectile/Projectile.gd" id="1_21741"]
+[ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="2_3yjax"]
 
 [sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(8, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(16, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="4"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(24, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(32, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="6"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(40, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="7"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(48, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="8"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(56, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="9"]
-atlas = ExtResource("2")
+atlas = ExtResource("2_3yjax")
 region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="SpriteFrames" id="10"]
@@ -85,7 +85,7 @@ radius = 4.0
 [node name="Projectile" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1")
+script = ExtResource("1_21741")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

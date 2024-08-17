@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var projectileScene: PackedScene
+@export var projectile_shooter: ProjectileShooter
 @export var projectileSpeed = 500
 
 @export var speed = 300
@@ -22,21 +22,12 @@ func _process(delta):
 	position += movement * delta
 	
 	if Input.is_action_pressed("ui_focus_next"):
-		shoot()
-		
-func shoot():
-	var projectile: Area2D = projectileScene.instantiate()
-	projectile.set_collision_layer_value(Aliases.LayerAlias.ENEMY_PROJECTILE, true)
-	projectile.set_collision_mask_value(Aliases.LayerAlias.PLAYER, true)
-	projectile.direction = Vector2.DOWN
-	projectile.speed = projectileSpeed
-	projectile.position = position
-	get_tree().root.add_child(projectile)
+		projectile_shooter.shoot()
 
 func die():
 	# prevent player projectiles for interacting with it while exploding
-	set_collision_layer_value(Aliases.LayerAlias.ENEMY, false)
-	set_collision_mask_value(Aliases.LayerAlias.PLAYER_PROJECTILE, false)
+	collision_layer = 0
+	collision_mask = 0
 	
 	$AnimatedSprite2D.play("explode")
 	await $AnimatedSprite2D.animation_finished

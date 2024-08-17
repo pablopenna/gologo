@@ -1,4 +1,4 @@
-extends Area2D
+class_name Projectile extends Area2D
 
 @export var direction = Vector2.UP
 @export var speed = 100
@@ -9,6 +9,7 @@ signal destroyed # when destroying the projectile via queue_free(), VisibleOnScr
 	
 func _init():
 	hasExploded = false
+	free
 	
 func _process(delta):
 	position += direction * speed * delta

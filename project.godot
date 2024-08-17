@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="VoidMaker"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://src/Main.tscn"
 config/features=PackedStringArray("4.3")
 boot_splash/use_filter=false
 config/icon="res://icon.png"
+
+[autoload]
+
+PhysicsLayersNamesUtils="*res://src/utils/physics_layers_names_utils.gd"
 
 [display]
 

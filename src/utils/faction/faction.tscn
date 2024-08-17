@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg5veli5vdg23"]
+
+[ext_resource type="Script" path="res://src/utils/faction/faction.gd" id="1_1awqq"]
+
+[node name="Faction" type="Node"]
+script = ExtResource("1_1awqq")

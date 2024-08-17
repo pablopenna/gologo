@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @export var enemyScene: PackedScene
 @export var rows = 3
 @export var columns = 5
