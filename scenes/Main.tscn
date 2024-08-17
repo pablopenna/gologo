@@ -9,5 +9,5 @@
 position = Vector2(218, 654)
 
 [node name="Spawner" parent="." instance=ExtResource("3")]
-rows = 2
-columns = 2
+rows = 4
+columns = 10

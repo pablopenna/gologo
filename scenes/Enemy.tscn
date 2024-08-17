@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://dsmjdaohlvul3" path="res://scenes/Projectile.tscn" id="4"]
 
-[sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(64, 53)
+[sub_resource type="CircleShape2D" id="CircleShape2D_th7qs"]
+radius = 15.0083
 
 [sub_resource type="AtlasTexture" id="5"]
 atlas = ExtResource("3")
@@ -92,11 +92,11 @@ projectileScene = ExtResource("4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
-shape = SubResource("1")
+shape = SubResource("CircleShape2D_th7qs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(10, 10)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("4")
 animation = &"idle"
 

@@ -87,8 +87,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="4"]
-size = Vector2(3.2, 7.2)
+[sub_resource type="CircleShape2D" id="CircleShape2D_pne22"]
+radius = 1.00499
 
 [node name="Player" type="Area2D"]
 texture_filter = 1
@@ -97,14 +97,14 @@ script = ExtResource("1")
 speed = 350
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(10, 10)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("3")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 9.53674e-07)
 scale = Vector2(10, 10)
-shape = SubResource("4")
+shape = SubResource("CircleShape2D_pne22")
 
 [node name="ProjectileShooter" type="Node2D" parent="."]
 position = Vector2(0, -40)
