@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://qckx4qylyx03"]
+[gd_scene load_steps=5 format=3 uid="uid://qckx4qylyx03"]
 
 [ext_resource type="Script" path="res://src/projectile/ProjectileShooter.gd" id="1_yiisw"]
 [ext_resource type="PackedScene" uid="uid://dsmjdaohlvul3" path="res://src/projectile/Projectile.tscn" id="2_dnmdc"]
+[ext_resource type="AudioStream" uid="uid://ccm6rcgijv2q0" path="res://sfx/laser_gun.wav" id="3_slgrx"]
+[ext_resource type="Script" path="res://src/utils/random_pitch.gd" id="4_n43jx"]
 
-[node name="ProjectileShooter" type="Node2D"]
+[node name="ProjectileShooter" type="Node2D" node_paths=PackedStringArray("audio_player")]
 position = Vector2(0, -40)
 script = ExtResource("1_yiisw")
 projectileScene = ExtResource("2_dnmdc")
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="ShootingTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_slgrx")
+script = ExtResource("4_n43jx")
