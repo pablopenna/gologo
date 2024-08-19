@@ -1,39 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0t12t7l7lrgg"]
+[gd_scene load_steps=2 format=3 uid="uid://b0t12t7l7lrgg"]
 
-[ext_resource type="PackedScene" uid="uid://cvicjubvosahf" path="res://src/player/Player.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/enemy_spawner/Spawner.tscn" id="3"]
-[ext_resource type="Script" path="res://src/utils/limits.gd" id="3_g5xmj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vov3w"]
-size = Vector2(479, 722)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ae3"]
-size = Vector2(620, 834)
+[ext_resource type="PackedScene" uid="uid://ddjoixqge1sjh" path="res://src/level.tscn" id="1_2ljgv"]
 
 [node name="Main" type="Node"]
 
-[node name="Player" parent="." instance=ExtResource("1")]
-position = Vector2(218, 654)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Spawner" parent="." instance=ExtResource("3")]
-rows = 4
-columns = 10
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(200, 360)
+render_target_update_mode = 4
 
-[node name="Playground" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Playground"]
-position = Vector2(239.5, 361)
-shape = SubResource("RectangleShape2D_vov3w")
-
-[node name="Limits" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 15
-script = ExtResource("3_g5xmj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits"]
-position = Vector2(242, 362)
-shape = SubResource("RectangleShape2D_a3ae3")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(231, 351)
-zoom = Vector2(0.5, 0.5)
+[node name="Level" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_2ljgv")]

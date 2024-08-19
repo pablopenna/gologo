@@ -4,9 +4,9 @@ class_name ProjectileShooter extends Node2D
 @export var faction: Faction
 @export var audio_player: RandomPitchAudioStreamPlayer
 
-@export var shootingCooldown = 0.05
-@export var projectileSpeed = 750
-@export var maxProjectiles = 3
+@export var shootingCooldown = 0.1
+@export var projectileSpeed = 1
+@export var maxProjectiles = 2
 var currentProjectiles
 
 signal projectile_shot

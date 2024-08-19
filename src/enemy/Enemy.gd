@@ -1,9 +1,8 @@
 extends Area2D
 
 @export var projectile_shooter: ProjectileShooter
-@export var projectileSpeed = 500
 
-@export var speed = 300
+@export var speed = 10
 @export var rotationSpeed = 5
 
 func _ready():

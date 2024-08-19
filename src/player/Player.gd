@@ -1,7 +1,8 @@
 class_name Player extends Node2D
 
 @export var speed = 150
-@onready var dead = false
+var dead: bool
+const MARGIN: int = 4
 
 signal playerDied
 
@@ -17,11 +18,11 @@ func _process(delta):
 func _processPosition(delta):
 	var movement = _getMovementInput()
 	position.x += movement * speed * delta
-	position.x = clamp(position.x, 0, get_viewport_rect().size.x)	
+	position.x = clamp(position.x, 0 + MARGIN, get_viewport_rect().size.x - MARGIN)	
 	
 	if movement != 0:
 		$AnimatedSprite2D.play("move")
-		if movement < 0:
+		if movement > 0:
 			$AnimatedSprite2D.flip_h = true  
 		else: 
 			$AnimatedSprite2D.flip_h = false

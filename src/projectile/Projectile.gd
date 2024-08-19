@@ -1,26 +1,25 @@
 class_name Projectile extends Area2D
 
-@export var direction = Vector2.UP
-@export var speed = 100
-var hasExploded
+@export var direction: Vector2 = Vector2.UP
+@export var speed: int = 1
+var hasExploded: bool
 
 signal outOfScreen
 signal destroyed # when destroying the projectile via queue_free(), VisibleOnScreenNotifier3D is triggered
 	
 func _init():
 	hasExploded = false
-	free
 	
 func _process(delta):
 	position += direction * speed * delta
 
 func _destroy():
-	emit_signal("destroyed")
+	destroyed.emit()
 	queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	if not hasExploded:
-		emit_signal("outOfScreen")
+		outOfScreen.emit()
 		_destroy()
 
 func _on_Projectile_area_entered(area):

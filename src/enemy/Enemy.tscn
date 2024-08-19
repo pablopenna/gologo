@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bg5veli5vdg23" path="res://src/utils/faction/faction.tscn" id="6_g0sux"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_th7qs"]
-radius = 15.0083
+radius = 4.0
 
 [sub_resource type="AtlasTexture" id="5"]
 atlas = ExtResource("3")
@@ -90,21 +90,23 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1")
 projectile_shooter = NodePath("ProjectileShooter")
+rotationSpeed = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
 shape = SubResource("CircleShape2D_th7qs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(4, 4)
 sprite_frames = SubResource("4")
 animation = &"idle"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-5, -5, 10, 10)
 
 [node name="ProjectileShooter" parent="." node_paths=PackedStringArray("faction") instance=ExtResource("5_s4dbg")]
+position = Vector2(0, 0)
 faction = NodePath("../Faction")
+projectileSpeed = 20
 
 [node name="Faction" parent="." instance=ExtResource("6_g0sux")]
 faction = 1
