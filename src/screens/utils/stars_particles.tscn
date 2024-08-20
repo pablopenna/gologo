@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbs7ci0trxbbg"]
+
+[ext_resource type="Script" path="res://src/screens/utils/star_particles.gd" id="1_h2krc"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iy4jk"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 90.16
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+
+[node name="StarsParticles" type="GPUParticles2D"]
+position = Vector2(51, 0)
+process_material = SubResource("ParticleProcessMaterial_iy4jk")
+lifetime = 3.0
+script = ExtResource("1_h2krc")

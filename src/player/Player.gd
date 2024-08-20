@@ -8,6 +8,7 @@ signal playerDied
 
 func _ready():
 	dead = false
+	position.x = get_viewport_rect().size.x/2
 	
 func _process(delta):
 	if not dead:

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddjoixqge1sjh"]
+[gd_scene load_steps=8 format=3 uid="uid://ddjoixqge1sjh"]
 
 [ext_resource type="PackedScene" uid="uid://cvicjubvosahf" path="res://src/player/Player.tscn" id="1_1n7kv"]
 [ext_resource type="PackedScene" uid="uid://do8h0dp3aukm3" path="res://src/enemy_spawner/Spawner.tscn" id="2_656y3"]
 [ext_resource type="Script" path="res://src/utils/limits.gd" id="3_hrf5m"]
+[ext_resource type="PackedScene" uid="uid://bbs7ci0trxbbg" path="res://src/screens/utils/stars_particles.tscn" id="4_uit6i"]
+[ext_resource type="PackedScene" uid="uid://dloo0yayjaf0y" path="res://src/screens/utils/background.tscn" id="5_7lv08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vov3w"]
 size = Vector2(479, 722)
@@ -18,7 +20,6 @@ position = Vector2(0, 320)
 [node name="Spawner" parent="." instance=ExtResource("2_656y3")]
 rows = 4
 columns = 10
-show_position_debug = true
 
 [node name="Playground" type="Area2D" parent="."]
 visible = false
@@ -36,3 +37,7 @@ script = ExtResource("3_hrf5m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limits"]
 position = Vector2(242, 362)
 shape = SubResource("RectangleShape2D_a3ae3")
+
+[node name="StarsParticles" parent="." instance=ExtResource("4_uit6i")]
+
+[node name="Background" parent="." instance=ExtResource("5_7lv08")]
