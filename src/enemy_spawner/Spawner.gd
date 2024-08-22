@@ -8,12 +8,15 @@ var spawn_area_size: Vector2
 
 @export var show_position_debug: bool = false
 
+@export var target: Node2D
+
 func _ready():
 	spawnPoints = []
 	spawn_area_size = Vector2(get_viewport_rect().size.x, get_viewport_rect().size.y/3)
 	_calculate_spawn_points()
 	# update() # for debugging | triggers _draw() to be called again
 	spawnEnemies()
+	create_path_to_target()
 	
 func _calculate_spawn_points():
 	var cellWidth = spawn_area_size.x / columns
@@ -43,8 +46,18 @@ func _draw():
 	draw_circle(bottomLeft, 10, Color.RED)
 	var bottomRight = Vector2(spawn_area_size.x, spawn_area_size.y*3)
 	draw_circle(bottomRight, 10, Color.RED)
-	
-	
 	for point in spawnPoints:
 		draw_circle(point, 5, Color.CHARTREUSE)
+	
+func create_path_to_target():
+	var chosen_enemy = get_child(0) as Enemy
+	
+	var path = Path2D.new()
+	var curve = Curve2D.new()
+	path.curve = curve
+	
+	curve.add_point(chosen_enemy.global_position)
+	curve.add_point(target.global_position)
+	
+	add_child(path)
 	

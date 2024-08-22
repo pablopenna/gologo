@@ -14,9 +14,10 @@ size = Vector2(620, 834)
 [node name="Player" parent="." instance=ExtResource("1_1n7kv")]
 position = Vector2(0, 320)
 
-[node name="Spawner" parent="." instance=ExtResource("2_656y3")]
+[node name="Spawner" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_656y3")]
 rows = 4
 columns = 10
+target = NodePath("../Player")
 
 [node name="Limits" type="Area2D" parent="." node_paths=PackedStringArray("shape")]
 collision_layer = 0

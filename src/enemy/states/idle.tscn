@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://svyp7v52ady4"]
+
+[ext_resource type="Script" path="res://src/enemy/states/idle.gd" id="1_vfb5x"]
+
+[node name="Idle" type="Node" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("1_vfb5x")
+animated_sprite = NodePath("")

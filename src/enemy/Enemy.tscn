@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhknrf0x1phro"]
+[gd_scene load_steps=20 format=3 uid="uid://bhknrf0x1phro"]
 
 [ext_resource type="Script" path="res://src/enemy/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://d0gvajaq0aip1" path="res://art/enemies/EnemyShip01.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://qckx4qylyx03" path="res://src/projectile/projectile_shooter.tscn" id="5_s4dbg"]
+[ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="6_4s1sk"]
 [ext_resource type="PackedScene" uid="uid://bg5veli5vdg23" path="res://src/utils/faction/faction.tscn" id="6_g0sux"]
+[ext_resource type="PackedScene" uid="uid://svyp7v52ady4" path="res://src/enemy/states/idle.tscn" id="7_h8h8s"]
+[ext_resource type="PackedScene" uid="uid://1fry3cb8syo0" path="res://src/enemy/states/die.tscn" id="7_r6vkd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_th7qs"]
 radius = 4.0
@@ -111,4 +114,15 @@ projectileSpeed = 20
 [node name="Faction" parent="." instance=ExtResource("6_g0sux")]
 faction = 1
 
-[connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "managed_node")]
+script = ExtResource("6_4s1sk")
+initial_state = NodePath("Idle")
+managed_node = NodePath("..")
+
+[node name="Die" parent="StateMachine" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("7_r6vkd")]
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("7_h8h8s")]
+animated_sprite = NodePath("../../AnimatedSprite2D")
+
+[connection signal="damaged" from="." to="StateMachine" method="change_to_state" binds= ["die", {}]]
