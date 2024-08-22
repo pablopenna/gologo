@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8h0dp3aukm3"]
+
+[ext_resource type="Script" path="res://src/enemy/spawner/spawner.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bhknrf0x1phro" path="res://src/enemy/Enemy.tscn" id="2"]
+
+[node name="Spawner" type="Node2D" node_paths=PackedStringArray("attack_target_timer")]
+script = ExtResource("1")
+enemyScene = ExtResource("2")
+attack_target_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

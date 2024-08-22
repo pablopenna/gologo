@@ -9,32 +9,36 @@ var spawn_area_size: Vector2
 @export var show_position_debug: bool = false
 
 @export var target: Node2D
+@export var attack_target_timer: Timer
 
 func _ready():
-	spawnPoints = []
 	spawn_area_size = Vector2(get_viewport_rect().size.x, get_viewport_rect().size.y/3)
-	_calculate_spawn_points()
-	# update() # for debugging | triggers _draw() to be called again
+	spawnPoints = _calculate_spawn_points()
 	spawnEnemies()
-	create_path_to_target()
+	#attack_target_timer.timeout.connect(make_enemy_attack_target)
 	
 func _calculate_spawn_points():
 	var cellWidth = spawn_area_size.x / columns
 	var cellHeight = spawn_area_size.y / rows
 	var cellCenter = Vector2(cellWidth/2, cellHeight/2)
+	var result = []
 	
 	for row in range(rows):
 		for column in range(columns):
 			var spawnPointCoordinates = Vector2(cellCenter.x + cellWidth*column, cellCenter.y + cellHeight*row)
-			spawnPoints.append(spawnPointCoordinates)
+			result.append(spawnPointCoordinates)
+	return result
 
 func spawnEnemies():
 	for point in spawnPoints:
-		var enemy = enemyScene.instantiate()
-		enemy.position = point
+		var enemy := enemyScene.instantiate() as Enemy
+		enemy.global_position = point
+		enemy.target = target
 		add_child(enemy)
 	
-# Debug
+func make_enemy_attack_target() -> void:
+	(get_child(5) as Enemy).go_to_target.emit()
+
 func _draw():
 	if not show_position_debug:
 		return
@@ -48,16 +52,3 @@ func _draw():
 	draw_circle(bottomRight, 10, Color.RED)
 	for point in spawnPoints:
 		draw_circle(point, 5, Color.CHARTREUSE)
-	
-func create_path_to_target():
-	var chosen_enemy = get_child(0) as Enemy
-	
-	var path = Path2D.new()
-	var curve = Curve2D.new()
-	path.curve = curve
-	
-	curve.add_point(chosen_enemy.global_position)
-	curve.add_point(target.global_position)
-	
-	add_child(path)
-	
