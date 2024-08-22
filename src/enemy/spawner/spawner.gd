@@ -15,7 +15,7 @@ func _ready():
 	spawn_area_size = Vector2(get_viewport_rect().size.x, get_viewport_rect().size.y/3)
 	spawnPoints = _calculate_spawn_points()
 	spawnEnemies()
-	#attack_target_timer.timeout.connect(make_enemy_attack_target)
+	attack_target_timer.timeout.connect(make_enemy_attack_target)
 	
 func _calculate_spawn_points():
 	var cellWidth = spawn_area_size.x / columns
