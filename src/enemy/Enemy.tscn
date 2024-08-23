@@ -120,7 +120,7 @@ faction = 1
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "managed_node")]
 script = ExtResource("6_4s1sk")
-initial_state = NodePath("Idle")
+initial_state = NodePath("GoToSpawnPoint")
 managed_node = NodePath("..")
 
 [node name="GoToSpawnPoint" parent="StateMachine" instance=ExtResource("7_d5ydw")]

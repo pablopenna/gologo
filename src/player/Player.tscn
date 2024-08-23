@@ -107,6 +107,6 @@ shape = SubResource("CircleShape2D_pne22")
 [node name="ProjectileShooter" parent="." node_paths=PackedStringArray("faction") instance=ExtResource("5_svm2l")]
 position = Vector2(0, 0)
 faction = NodePath("../Faction")
-projectileSpeed = 90
+projectileSpeed = 700
 
 [node name="Faction" parent="." instance=ExtResource("6_xni4i")]
