@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh13gkon7hb2s"]
+
+[ext_resource type="Script" path="res://src/enemy/states/go_to_spawn_point.gd" id="1_usb37"]
+
+[node name="GoToSpawnPoint" type="Node"]
+script = ExtResource("1_usb37")

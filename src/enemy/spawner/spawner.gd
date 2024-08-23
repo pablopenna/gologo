@@ -31,13 +31,18 @@ func _calculate_spawn_points():
 
 func spawnEnemies():
 	for point in spawnPoints:
+		var enemy_spawn_point = Node2D.new()
+		enemy_spawn_point.global_position = point
+		add_child(enemy_spawn_point)
+		
 		var enemy := enemyScene.instantiate() as Enemy
 		enemy.global_position = point
+		enemy.spawn_point = enemy_spawn_point
 		enemy.target = target
 		add_child(enemy)
 	
 func make_enemy_attack_target() -> void:
-	(get_child(5) as Enemy).go_to_target.emit()
+	(get_child(6) as Enemy).go_to_target.emit()
 
 func _draw():
 	if not show_position_debug:

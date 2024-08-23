@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bhknrf0x1phro"]
+[gd_scene load_steps=23 format=3 uid="uid://bhknrf0x1phro"]
 
 [ext_resource type="Script" path="res://src/enemy/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://d0gvajaq0aip1" path="res://art/enemies/EnemyShip01.png" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qckx4qylyx03" path="res://src/projectile/projectile_shooter.tscn" id="5_s4dbg"]
 [ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="6_4s1sk"]
 [ext_resource type="PackedScene" uid="uid://bg5veli5vdg23" path="res://src/utils/faction/faction.tscn" id="6_g0sux"]
+[ext_resource type="PackedScene" uid="uid://bh13gkon7hb2s" path="res://src/enemy/states/go_to_spawn_point.tscn" id="7_d5ydw"]
 [ext_resource type="PackedScene" uid="uid://svyp7v52ady4" path="res://src/enemy/states/idle.tscn" id="7_h8h8s"]
 [ext_resource type="PackedScene" uid="uid://1fry3cb8syo0" path="res://src/enemy/states/die.tscn" id="7_r6vkd"]
 [ext_resource type="PackedScene" uid="uid://btp7nrcnm85gn" path="res://src/enemy/states/cycle_outside_of_screen.tscn" id="7_v628b"]
@@ -122,8 +123,10 @@ script = ExtResource("6_4s1sk")
 initial_state = NodePath("Idle")
 managed_node = NodePath("..")
 
+[node name="GoToSpawnPoint" parent="StateMachine" instance=ExtResource("7_d5ydw")]
+
 [node name="CycleOutsideOfScreen" parent="StateMachine" node_paths=PackedStringArray("next_state", "visible_on_screen_notifier") instance=ExtResource("7_v628b")]
-next_state = NodePath("../Die")
+next_state = NodePath("../GoToSpawnPoint")
 visible_on_screen_notifier = NodePath("../../VisibleOnScreenNotifier2D")
 
 [node name="Die" parent="StateMachine" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("7_r6vkd")]
