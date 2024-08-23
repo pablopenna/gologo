@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btp7nrcnm85gn"]
+
+[ext_resource type="Script" path="res://src/enemy/states/cycle_outside_of_screen.gd" id="1_avxxv"]
+
+[node name="CycleOutsideOfScreen" type="Node"]
+script = ExtResource("1_avxxv")

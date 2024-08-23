@@ -10,17 +10,17 @@ var managed_node: Node
 # StateManager uses this as the dict key where states are stored
 var state_name: String
 
-func enter(context: Dictionary) -> void:
+func enter(_context: Dictionary) -> void:
 	pass
 	
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
 	pass
 	
-func input(event: InputEvent) -> void:
+func input(_event: InputEvent) -> void:
 	pass
 	
-func physics_process(delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	pass
 
-func exit(new_state: State) -> void:
+func exit(_new_state: State) -> void:
 	pass

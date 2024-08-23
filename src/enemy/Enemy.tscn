@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhknrf0x1phro"]
+[gd_scene load_steps=22 format=3 uid="uid://bhknrf0x1phro"]
 
 [ext_resource type="Script" path="res://src/enemy/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://d0gvajaq0aip1" path="res://art/enemies/EnemyShip01.png" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bg5veli5vdg23" path="res://src/utils/faction/faction.tscn" id="6_g0sux"]
 [ext_resource type="PackedScene" uid="uid://svyp7v52ady4" path="res://src/enemy/states/idle.tscn" id="7_h8h8s"]
 [ext_resource type="PackedScene" uid="uid://1fry3cb8syo0" path="res://src/enemy/states/die.tscn" id="7_r6vkd"]
+[ext_resource type="PackedScene" uid="uid://btp7nrcnm85gn" path="res://src/enemy/states/cycle_outside_of_screen.tscn" id="7_v628b"]
 [ext_resource type="PackedScene" uid="uid://bkbpgf2mb712l" path="res://src/enemy/states/path_to_target.tscn" id="9_lk2xj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_th7qs"]
@@ -94,6 +95,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1")
 projectile_shooter = NodePath("ProjectileShooter")
+speed = 100
 rotationSpeed = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -120,13 +122,18 @@ script = ExtResource("6_4s1sk")
 initial_state = NodePath("Idle")
 managed_node = NodePath("..")
 
+[node name="CycleOutsideOfScreen" parent="StateMachine" node_paths=PackedStringArray("next_state", "visible_on_screen_notifier") instance=ExtResource("7_v628b")]
+next_state = NodePath("../Die")
+visible_on_screen_notifier = NodePath("../../VisibleOnScreenNotifier2D")
+
 [node name="Die" parent="StateMachine" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("7_r6vkd")]
 animated_sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="Idle" parent="StateMachine" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("7_h8h8s")]
 animated_sprite = NodePath("../../AnimatedSprite2D")
 
-[node name="PathToTarget" parent="StateMachine" instance=ExtResource("9_lk2xj")]
+[node name="PathToTarget" parent="StateMachine" node_paths=PackedStringArray("on_reached_destination_state") instance=ExtResource("9_lk2xj")]
+on_reached_destination_state = NodePath("../CycleOutsideOfScreen")
 
 [connection signal="damaged" from="." to="StateMachine" method="change_to_state" binds= ["die", {}]]
 [connection signal="go_to_target" from="." to="StateMachine" method="change_to_state" binds= ["path_to_target", {}]]
