@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsmjdaohlvul3"]
+[gd_scene load_steps=15 format=3 uid="uid://dsmjdaohlvul3"]
 
 [ext_resource type="Script" path="res://src/projectile/Projectile.gd" id="1_21741"]
 [ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="2_3yjax"]
@@ -82,10 +82,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nmhh"]
 radius = 1.0
 
-[node name="Projectile" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fcmq"]
+size = Vector2(2, 0)
+
+[node name="Projectile" type="Area2D" node_paths=PackedStringArray("fix_collision_shape")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_21741")
+fix_collision_shape = NodePath("FixCollisionCollisionShape")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -97,6 +101,9 @@ shape = SubResource("CircleShape2D_7nmhh")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-1, -1, 2, 2)
+
+[node name="FixCollisionCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8fcmq")
 
 [connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

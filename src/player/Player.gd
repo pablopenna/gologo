@@ -17,13 +17,13 @@ func _process(delta):
 			$ProjectileShooter.shoot()
 	
 func _processPosition(delta):
-	var movement = _getMovementInput()
-	position.x += movement * speed * delta
+	var movement: Vector2 = _getMovementInput()
+	position += movement * speed * delta
 	position.x = clamp(position.x, 0 + MARGIN, get_viewport_rect().size.x - MARGIN)	
 	
-	if movement != 0:
+	if movement.x != 0:
 		$AnimatedSprite2D.play("move")
-		if movement > 0:
+		if movement.x > 0:
 			$AnimatedSprite2D.flip_h = true  
 		else: 
 			$AnimatedSprite2D.flip_h = false
@@ -31,11 +31,9 @@ func _processPosition(delta):
 		$AnimatedSprite2D.play("idle")
 
 func _getMovementInput():
-	var movement = 0
-	if Input.is_action_pressed("player_left"):
-		movement -= 1
-	if Input.is_action_pressed("player_right"):
-		movement += 1
+	var movement = Vector2.ZERO
+	movement.x = Input.get_axis("player_left","player_right")
+	movement.y = Input.get_axis("player_up","player_down")
 	return movement
 
 func die():
