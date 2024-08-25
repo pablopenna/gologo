@@ -85,11 +85,11 @@ radius = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fcmq"]
 size = Vector2(2, 0)
 
-[node name="Projectile" type="Area2D" node_paths=PackedStringArray("fix_collision_shape")]
+[node name="Projectile" type="Area2D" node_paths=PackedStringArray("fix_collision_raycast")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_21741")
-fix_collision_shape = NodePath("FixCollisionCollisionShape")
+fix_collision_raycast = NodePath("RayCast2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -105,5 +105,10 @@ rect = Rect2(-1, -1, 2, 2)
 [node name="FixCollisionCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8fcmq")
 
-[connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 0
+collide_with_areas = true
+collide_with_bodies = false
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
