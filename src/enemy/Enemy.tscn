@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bhknrf0x1phro"]
+[gd_scene load_steps=24 format=3 uid="uid://bhknrf0x1phro"]
 
 [ext_resource type="Script" path="res://src/enemy/Enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://d0gvajaq0aip1" path="res://art/enemies/EnemyShip01.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b70t5v6pm2xn2" path="res://art/artifacts/projectile.png" id="3"]
+[ext_resource type="Script" path="res://src/enemy/sprite.gd" id="4_k7xft"]
 [ext_resource type="PackedScene" uid="uid://qckx4qylyx03" path="res://src/projectile/projectile_shooter.tscn" id="5_s4dbg"]
 [ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="6_4s1sk"]
 [ext_resource type="PackedScene" uid="uid://bg5veli5vdg23" path="res://src/utils/faction/faction.tscn" id="6_g0sux"]
@@ -106,6 +107,8 @@ shape = SubResource("CircleShape2D_th7qs")
 texture_filter = 1
 sprite_frames = SubResource("4")
 animation = &"idle"
+frame_progress = 0.831052
+script = ExtResource("4_k7xft")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-5, -5, 10, 10)
